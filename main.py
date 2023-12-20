@@ -3,54 +3,16 @@ from tkinter import ttk
 from tkinter import messagebox
 from db import Database
 
-db=Database()
+db = Database()
 
-import mysql.connector
-
-con=mysql.connector.connect(host="localhost",user="root",password="12345",database="python_db")
-
-# if con:
-#     print("connected")
-
-def insert(name,age,doj,email,gender,contact,address):
-    cur=con.cursor()
-    sql="insert into emp(name,age,doj,email,gender,contact,address)values(%s,%s,%s,%s,%s,%s,%s);"
-    user=(name,age,doj,email,gender,contact,address)
-    cur.execute(sql,user)
-    con.commit()
-    print("data inserted")
-
-def update(name,age,doj,email,gender,contact,address):
-    cur=con.cursor()
-    sql="update emp set name=%s,age=%s,doj=%s,email=%s,gender=%s,contact=%s,address=%s where id=%s;"
-    user=(name,age,doj,email,gender,contact,address)
-    cur.execute(sql,user)
-    con.commit()
-    print("updated")
-def delete(id):
-    cur=con.cursor()
-    sql="delete from emp where id=%s;"
-    user=(id,)
-    cur.execute(sql,user)
-    con.commit()
-    print("deleted")
-def select():
-    cur=con.cursor()
-    sql="select * from emp"
-    cur.execute(sql)
-    result=cur.fetchall()
-    print(result)
-
-
-
-root=Tk()
+root = Tk()
 root.title("Employee Management System")
 root.geometry("1366x768+0+0")
 root.config(bg="#2c3e50")
 root.state("zoomed")
 
-name=StringVar()
-age=IntVar()
+name = StringVar()
+age = IntVar()
 doj=StringVar()
 gender=StringVar()
 email=StringVar()
